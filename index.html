@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>20 Second Wait App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background: #f2f2f2;
+    }
+    #continueBtn {
+      display: none;
+      padding: 12px 24px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #countdown {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="page1">
+    <div id="countdown">Please wait 20 seconds...</div>
+    <button id="continueBtn" onclick="goToPage2()">Continue</button>
+  </div>
+
+  <div id="page2" style="display: none;">
+    <h1>Welcome to Page 2!</h1>
+    <p>You've successfully moved to the second page.</p>
+  </div>
+
+  <script>
+    let seconds = 20;
+    const countdownEl = document.getElementById('countdown');
+    const continueBtn = document.getElementById('continueBtn');
+
+    const interval = setInterval(() => {
+      seconds--;
+      countdownEl.innerText = `Please wait ${seconds} seconds...`;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        countdownEl.style.display = 'none';
+        continueBtn.style.display = 'inline-block';
+      }
+    }, 1000);
+
+    function goToPage2() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
